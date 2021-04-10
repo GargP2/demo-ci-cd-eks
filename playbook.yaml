@@ -1,0 +1,13 @@
+---
+
+- name: Deploy to K8s
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Deploy User Service
+    shell: |
+      echo "Configuring KubeConfig"
+      aws eks update-kubeconfig --name prod --region us-east-1
+      kubectl apply -f deploy.yaml
+      kubectl apply -f service.yaml

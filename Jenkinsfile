@@ -48,5 +48,11 @@ pipeline {
                 sh("docker rmi -f gargp2/demo:$SHORT_COMMIT || :")
             }
         }
+        stage('Remove local images') {
+            steps {
+                echo '=== Deploy to EKS Cluster ==='
+                sh("ansible-playbook playbook.yaml || :")
+            }
+        }
     }
 }
